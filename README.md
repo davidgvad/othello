@@ -5,7 +5,7 @@ A small Rust implementation of Othello/Reversi.
 The project is split into two clear parts:
 
 - `src/lib.rs` contains the reusable game engine.
-- `src/main.rs` contains the playable terminal frontend.
+- `src/main.rs` contains the clickable desktop frontend built with `eframe`/`egui`.
 
 The engine handles:
 
@@ -19,20 +19,22 @@ The engine handles:
 - score counting and winner detection
 - structured move errors with helpful messages
 - hint and best-move scoring based on flip count
-- a trait-based greedy AI strategy
+- trait-based AI strategies
+- greedy local move selection for hints
+- recursive minimax search for strategic AI play
 - recursive directional scanning for captured discs
 
-The terminal frontend includes:
+The desktop frontend includes:
 
-- a clean 8x8 board with row and column coordinates
+- a clean clickable 8x8 board with row and column coordinates
 - highlighted legal moves for the current player
-- score and turn display
-- friendly commands: `hint`, `ai`, `undo`, `score`, `help`, and `quit`
-- graceful handling for invalid input and invalid moves
+- score, turn, and game-over display
+- buttons for greedy hint, recursive AI move, undo, and restart
+- graceful messages for invalid moves
 
-Rust features used in this project include enums for exact game states, structs for board coordinates and scores, pattern matching for move logic, `Result` for recoverable errors, ownership-friendly immutable queries, iterators and closures for move selection, traits for AI strategy behavior, cloning for undo history, recursion for directional board traversal, and tests for the core rules.
+Rust features used in this project include enums for exact game states, structs for board coordinates and scores, pattern matching for move logic, `Result` for recoverable errors, ownership-friendly immutable queries, iterators and closures for move selection, traits for AI strategy behavior, cloning for undo history, recursion for directional board traversal and minimax search, and tests for the core rules. The GUI demonstrates separation of concerns because the desktop frontend reuses the same backend engine instead of rewriting Othello rules.
 
-Run the playable terminal version with:
+Run the playable desktop version with:
 
 ```bash
 cargo run
